@@ -1,15 +1,20 @@
-<div>
-    <ol>
-        @forelse ($tasks as $item)
-            <li>{{ $item->title }} <a href="{{ route('tasks.show', [ 'id' => $item->id]) }}">ver</a> </li>
-        @empty
-            <div>There are no tasks!</div>
-        @endforelse
-    </ol>
-</div>
+@extends('layouts.app')
+
+@section('title', 'The list of Tasks')
+
+@section('content')
+    <div>
+        <ol>
+            @forelse ($tasks as $item)
+                <li>{{ $item->title }} <a href="{{ route('tasks.show', ['id' => $item->id]) }}">ver</a> </li>
+            @empty
+                <div>There are no tasks!</div>
+            @endforelse
+        </ol>
+    </div>
 
 
-{{-- <div>
+    {{-- <div>
     @if (count($tasks))
         <ol>
             @foreach ($tasks as $item)
@@ -20,3 +25,5 @@
         <div>There are no tasks!</div>
     @endif
 </div> --}}
+
+@endsection
