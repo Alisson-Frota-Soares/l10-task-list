@@ -9,7 +9,7 @@
         <div>
             <label for="title">
                 Title
-                <input type="text" name="title" id="title" @error('title') aria-invalid="true" @enderror>
+                <input type="text" name="title" id="title" value="{{ old('title') }}" @error('title') aria-invalid="true" @enderror>
                 @error('title')
                     <small id="invalid-helper">{{ $message }}</small>
                 @enderror
@@ -18,7 +18,7 @@
         <div>
             <label for="description">
                 Description
-                <textarea name="description" id="description" @error('description') aria-invalid="true" @enderror></textarea>
+                <textarea name="description" id="description" @error('description') aria-invalid="true" @enderror>{{ old('description')}}</textarea>
                 @error('description')
                     <small id="invalid-helper">{{ $message }}</small>
                 @enderror
@@ -27,7 +27,7 @@
         <div>
             <label for="long_description">
                 Long Description
-                <textarea name="long_description" id="long_description" @error('description') aria-invalid="true" @enderror></textarea>
+                <textarea name="long_description" id="long_description" @error('long_description') aria-invalid="true" @enderror>{{ old('long_description')}}</textarea>
                 @error('long_description')
                     <small id="invalid-helper">{{ $message }}</small>
                 @enderror
