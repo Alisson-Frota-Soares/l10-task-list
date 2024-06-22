@@ -78,6 +78,13 @@ Route::get('/tasks/{id}', function ($id) {
     return view('show', ['task' => $task]);
 })->name('tasks.show');
 
+Route::get('/tasks/{id}/edit', function ($id) {
+
+    $task = Task::findOrFail($id);
+
+    return view('edit', ['task' => $task]);
+})->name('tasks.edit');
+
 
 Route::post('/tasks', function (Request $request) {
     
@@ -96,10 +103,33 @@ Route::post('/tasks', function (Request $request) {
     
     $task->save();
 
-    return redirect()->route('tasks.show', ['id' => $task->id]);
+    return redirect()->route('tasks.show', ['id' => $task->id])->with('success', 'Task created syccessfully!'); //with cria uma variavel de sessão com o nome escolhido
 
 
 })->name('tasks.store');
+
+
+Route::put('/tasks/{id}', function (Request $request, $id) {
+    
+    $data = $request->validate([
+        'title' => 'required|max:255',
+        'description' => 'required',
+        'long_description' => 'required',
+    ]);
+
+
+    $task = Task::findOrFail($id);
+    $task->title = $data['title'];
+    $task->description = $data['description'];
+    $task->long_description = $data['long_description'];
+    $task->completed = false;
+    
+    $task->save();
+
+    return redirect()->route('tasks.show', ['id' => $task->id])->with('success', 'Task updated syccessfully!'); //with cria uma variavel de sessão com o nome escolhido
+
+
+})->name('tasks.update');
 
 // Route::get('/taks/{id}', function ($id) use($tasks) {
 //     $task = collect($tasks)->firstWhere('id', $id);
