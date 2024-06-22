@@ -11,6 +11,9 @@
 
 <body>
     <div class="container">
+        @if (session()->has('success'))
+            <article>{{session('success')}}</article>
+        @endif
         <h1>@yield('title')</h1>
 
         @yield('content')
