@@ -148,6 +148,13 @@ Route::put('/tasks/{task}', function (TaskRequest $request, Task $task) {
 
 })->name('tasks.update');
 
+
+Route::delete('/tasks/{task}', function (Task $task) {
+    $task->delete();
+    
+    return redirect()->route('tasks.index')->with('success', 'Task deleted successfully!'); 
+})->name('tasks.destroy');
+
 // Route::get('/taks/{id}', function ($id) use($tasks) {
 //     $task = collect($tasks)->firstWhere('id', $id);
     
