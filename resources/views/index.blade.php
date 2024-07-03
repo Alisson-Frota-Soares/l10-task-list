@@ -6,7 +6,7 @@
     <div>
         <ol>
             @forelse ($tasks as $item)
-                <li>{{ $item->title }} <a href="{{ route('tasks.show', ['id' => $item->id]) }}">ver</a> </li>
+                <li>{{ $item->title }} <a href="{{ route('tasks.show', ['task' => $item->id]) }}">ver</a> </li>
             @empty
                 <div>There are no tasks!</div>
             @endforelse
