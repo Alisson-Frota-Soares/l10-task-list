@@ -3,6 +3,11 @@
 @section('title', 'The list of Tasks')
 
 @section('content')
+
+    <div>
+        <a href="{{ route('tasks.create') }}">Add task</a>
+    </div>
+
     <div>
         <ol>
             @forelse ($tasks as $item)
@@ -12,6 +17,10 @@
             @endforelse
         </ol>
     </div>
+
+    @if ($tasks->count())
+        {{ $tasks->links() }}
+    @endif
 
 
     {{-- <div>
