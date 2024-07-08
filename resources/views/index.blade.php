@@ -11,7 +11,7 @@
     <div>
         <ol>
             @forelse ($tasks as $item)
-                <li>{{ $item->title }} <a href="{{ route('tasks.show', ['task' => $item->id]) }}">ver</a> </li>
+                <li @class(['line-through' => $item->completed]) >{{ $item->title }} <a href="{{ route('tasks.show', ['task' => $item->id]) }}">ver</a> </li>
             @empty
                 <div>There are no tasks!</div>
             @endforelse
